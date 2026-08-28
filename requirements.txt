@@ -1,0 +1,14 @@
+# Core dependencies
+numpy>=1.21
+scipy>=1.7
+scikit-learn>=1.0
+PyYAML>=5.4
+
+# Optional: the XGBoost classifier (SC and RF run without it)
+xgboost>=1.6
+
+# Optional: reading the chest X-ray images in scripts/build_sketches.py
+Pillow>=9.0
+
+# Development
+pytest>=7.0

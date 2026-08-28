@@ -1,0 +1,92 @@
+# Shingle parameters of the five datasets.
+#
+#   overlap.primary   -> Experiment 1 (single 400-feature sketch, Table 2)
+#   overlap.secondary -> second sketch of Experiment 2 (Table 3)
+#
+# The same family of 400 Rabin fingerprint functions (seed 42, degree 61) is
+# used for every dataset, so that only the shingling differs between them.
+
+fingerprints:
+  n_functions: 400          # 200 per sketch in Experiment 2
+  polynomial_degree: 61
+  random_state: 42
+
+evaluation:
+  folds: 10
+  k_grid_step: 10           # k = 10, 20, ..., 390
+  idis_alpha_grid: [0.3, 0.4, 0.5, 0.6, 0.7]
+
+datasets:
+
+  memory_dumps:
+    name: Dynamic analysis - Linux memory dumps
+    task: Unknown malware detection
+    task_type: binary
+    metric: auc
+    modality: bytes
+    unit: kilobytes
+    shingle_length: 32768        # 32 KB
+    overlap:
+      primary: 8192              # 8 KB
+      secondary: 16384           # 16 KB
+    n_samples: 11200             # 5,600 benign + 5,600 malicious
+    data_availability: sha256_only
+
+  pdf:
+    name: Static analysis - PDF files
+    task: Malicious file detection
+    task_type: binary
+    metric: auc
+    modality: bytes
+    unit: bytes
+    shingle_length: 256
+    overlap:
+      primary: 64
+      secondary: 128
+    n_samples: 10000             # 5,000 benign + 5,000 malicious
+    data_availability: third_party
+
+  chest_xray:
+    name: Chest X-ray
+    task: COVID-19 infected lung detection
+    task_type: binary
+    metric: auc
+    modality: image_2d
+    unit: pixels
+    shingle_length: 128          # 128 x 128 pixel window
+    overlap:
+      primary: 32
+      secondary: 64
+    partition_minhash: true      # partition MinHash [4] is used for images
+    preprocessing: convert to grayscale
+    n_samples: 9544              # 5,500 clean + 4,044 infected
+    data_availability: public
+
+  dna:
+    name: DNA - virus categorization
+    task: Virus categorization
+    task_type: multiclass
+    metric: accuracy
+    modality: characters
+    unit: nucleotides
+    shingle_length: 252          # 84 codons
+    overlap:
+      primary: 81
+      secondary: 27
+    n_samples: 13631             # 5 virus classes
+    data_availability: public
+
+  fake_news:
+    name: Fake news
+    task: Fake news detection
+    task_type: binary
+    metric: auc
+    modality: words
+    unit: words
+    shingle_length: 4
+    overlap:
+      primary: 3
+      secondary: 2
+    preprocessing: lowercase, punctuation removal
+    n_samples: 72134             # 35,028 real + 37,106 fake
+    data_availability: public

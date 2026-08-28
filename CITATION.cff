@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "Feature Selection Strategies for MinHash-Based Classifiers"
+authors:
+  - family-names: Panker
+    given-names: Tomer
+    affiliation: "Malware Lab, Cyber Security Research Center, Ben-Gurion University of the Negev"
+  - family-names: Nissim
+    given-names: Nir
+    affiliation: "Malware Lab, Cyber Security Research Center, Ben-Gurion University of the Negev"
+version: 1.0.0
+license: MIT
+preferred-citation:
+  type: article
+  title: "Feature Selection Strategies for Improving MinHash-Based Classifiers' Performance and Generalization"
+  authors:
+    - family-names: Panker
+      given-names: Tomer
+    - family-names: Nissim
+      given-names: Nir
+  year: 2026
